@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Ted's Todo App</title>
+  </head>
+  <body>
+    <input type="text" id="todo-title" />
+    <input type="date" id="date-picker"/> 
+    <button onclick="addTodo()">Click Me</button>
+    <div id="todo-list"></div>
+    <script>
+
+      const todos = [{
+        title: 'Get groceries',
+        dueDate: '2022-02-02'
+      },{
+        title: 'Wash car',
+        dueDate: '2022-03-01'
+      },{
+        title: 'Make dinner',
+        dueDate: '2023-04-01'
+      }];
+
+      render();
+
+      function addTodo(){
+        const textBox = document.getElementById('todo-title');
+        const title = textBox.value;
+        const datePicker = document.getElementById('date-picker');
+        const dueDate = datePicker.value;
+
+        todos.push({
+          title: title,
+          dueDate: dueDate}
+        );
+
+        render();
+      }
+
+      function render(){
+        // reset our list first
+        document.getElementById('todo-list').innerHTML = ''
+        todos.forEach(function(todo) {
+          let element = document.createElement('div');
+          element.innerText = todo.title + ' ' + todo.dueDate;
+          let todoList = document.getElementById('todo-list');
+          todoList.appendChild(element);
+      });
+      }
+    </script>
+  </body>
+</html>
